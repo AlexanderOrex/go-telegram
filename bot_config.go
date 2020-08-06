@@ -6,6 +6,8 @@ type BotConfig struct {
 	ChatId  int
 }
 
+// Init the config for telegram Bot API
+// https://core.telegram.org/bots/api
 func InitConfig(botName string, token string, chatId int) BotConfig {
 	var config BotConfig
 	config.Token = token

@@ -2,40 +2,32 @@ package telegram
 
 import (
 	"bytes"
-	"fmt"
-	"net/http"
 	"net/url"
 	"strconv"
-	"strings"
 )
 
-const API_TOKEN_MASK = "<token>"
-const API_METHOD_MASK = "<method>"
-
-const API_URI = "https://api.telegram.org/bot" + API_TOKEN_MASK + "/" + API_METHOD_MASK
-
-func SendMessage(config BotConfig, message string) error {
+// Send the message to Telegram chat using BotConfig
+func SendMessage(config BotConfig, message string, parseMode string) string {
 	apiMethod := "sendMessage"
 
-	uri := strings.Replace(API_URI, API_METHOD_MASK, apiMethod, 1)
-	uri = strings.Replace(uri, API_TOKEN_MASK, config.Token, 1)
+	uri := getTelegramUri(config, apiMethod)
+
+	params := setMessageParams(uri, strconv.Itoa(config.ChatId), message, parseMode)
 
 	buffer := new(bytes.Buffer)
-	params := url.Values{}
-	params.Set("chat_id", strconv.Itoa(config.ChatId))
-	params.Set("text", message)
-	fmt.Println(params)
 	buffer.WriteString(params.Encode())
-	fmt.Println(uri)
-	req, _ := http.NewRequest("POST", uri, buffer)
-	req.Header.Set("content-type", "application/x-www-form-urlencoded")
 
-	client := &http.Client{}
+	resData := doRequest(uri, buffer, "application/x-www-form-urlencoded")
 
-	res, err := client.Do(req)
-	req.Body.Close()
+	return string(resData)
+}
 
-	fmt.Println(res)
+// Set GET params for API URI
+func setMessageParams(uri string, chat_id string, message string, parseMode string) (params url.Values) {
+	params = url.Values{}
+	params.Set("chat_id", chat_id)
+	params.Set("parse_mode", parseMode)
+	params.Set("text", message)
 
-	return err
+	return
 }
