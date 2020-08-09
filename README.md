@@ -11,8 +11,8 @@ go get gonum.org/v1/plot/...
 package main
 
 import (
-  "github.com/AlexanderOrex/go-telegram"
-  "math"
+    "github.com/AlexanderOrex/go-telegram"
+    "math"
 )
 
 func main() {
