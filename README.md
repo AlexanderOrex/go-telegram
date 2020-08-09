@@ -1,5 +1,8 @@
 # go-telegram
 Go tools for Telegram API. Helps to manage your Telegram bots.
+You can:
+1. Easily send text messages
+1. Easily send line plots in telegram messages 
 
 ```
 go get -u github.com/AlexanderOrex/go-telegram
