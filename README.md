@@ -8,10 +8,17 @@ go get gonum.org/v1/plot/...
 
 ## Usage example
 ```
+package main
+
+import (
+  "github.com/AlexanderOrex/go-telegram"
+  "math"
+)
+
 func main() {
-    botName := "BOT_NAME"
-    botToken := "BOT_TOKEN"
-    chatId := 123456789
+    botName := "musicfreeBot"
+    botToken := "825572596:AAEldz_ap3eMzQX0ikQKOoN2mjrVpR0gYn0"
+    chatId := 332651407
     config := telegram.InitConfig(botName, botToken, chatId)
 
     mode := "html"
