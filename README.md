@@ -19,9 +19,9 @@ import (
 )
 
 func main() {
-    botName := "musicfreeBot"
-    botToken := "825572596:AAEldz_ap3eMzQX0ikQKOoN2mjrVpR0gYn0"
-    chatId := 332651407
+    botName := "BOT_NAME"
+    botToken := "BOT_TOKEN"
+    chatId := 123456789
     config := telegram.InitConfig(botName, botToken, chatId)
 
     mode := "html"
